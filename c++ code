@@ -1,0 +1,86 @@
+// queue implementation using linked list
+
+#include<bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    struct node* next;
+};
+
+
+struct node *front=0;
+struct node *rare=0;
+
+//push
+void enqueue(int x){
+  
+ struct node* newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->data=x;
+ newnode->next=0;
+ 
+  if(front==0 && rare==0){
+      front=newnode;
+      rare=newnode;
+  }
+   
+  else{
+    rare->next=newnode;
+    rare=newnode;
+  } 
+  
+}
+
+//pop
+
+void deueue(){
+ 
+ if(front==0 && rare==0)cout<<"queue is empty"<<endl;
+ 
+ else{
+    struct node* temp=front;
+    cout<<"poped value is : "<<temp->data<<endl;
+    front=front->next;
+    free(temp);
+ }
+ 
+}
+
+
+//peek
+
+void peek(){
+  if(front==0 && rare==0)cout<<"queue is empty"<<endl;
+   
+   else
+     cout<<"peek is : "<<front->data<<endl;
+}
+
+//display
+
+void display(){
+  
+    if(front==0 && rare==0)cout<<"queue is empty"<<endl;
+    
+    else{
+      struct node* temp=front;
+      
+      while(temp!=0){
+          cout<<"displayed value - "<<temp->data<<endl;
+          temp=temp->next;
+      }
+    }
+}
+
+//main function
+int main(){
+  enqueue(1); 
+  enqueue(2); 
+  enqueue(3); 
+  enqueue(4);
+  deueue();
+  peek();
+  display();
+    
+    return 0;
+}
